@@ -22,14 +22,14 @@ UserSchema.pre('save', function (next) {
   console.log("saving");
   if (this.isModified('password') || this.isNew) {
     bcrypt.genSalt(10, function (err, salt) {
-      if (err) {
+      if (err)
         return next(err);
-      }
+
       console.log(salt + "\nwe got da password");
       bcrypt.hash(user.password, salt, function (err, hash) {
-        if (err) {
+        if (err)
           return next(err);
-        }
+
         console.log(hash + "\nhashed?");
         user.password = hash;
         next();
